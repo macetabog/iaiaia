@@ -1,0 +1,86 @@
+/* Reset básico para margens e preenchimento */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0f0000;
+  color: #f7f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container principal do quiz */
+.screen {
+  background: #5161f1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Esconder elementos */
+.hidden {
+  display: none;
+}
+
+/* Estilo para o título do quiz */
+h1 {
+  font-size: 2em;
+  color: #e74c3c; /* Vermelho do Homem-Aranha */
+  margin-bottom: 20px;
+}
+
+/* Estilo para a área da pergunta */
+.question {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* Estilo para as opções de resposta */
+label {
+  display: block;
+  background: #3498db; /* Azul do traje do Homem-Aranha */
+  color: #fafafa;
+  border: 1px solid #9eacb6;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+label:hover {
+  background: #2980b9;
+}
+
+/* Estilo para o botão de enviar */
+button {
+  background: #e74747; /* Verde para um toque de contraste */
+  color: #faf6f6;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #eff0ef;
+}
+
+/* Estilo para mensagens de feedback */
+#result {
+  font-size: 1.2em;
+  font-weight: bold;
+}
