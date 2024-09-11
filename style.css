@@ -84,3 +84,11 @@ button:hover {
   font-size: 1.2em;
   font-weight: bold;
 }
+
+/* Estilo para as imagens do quiz */
+.hero-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 20px;
+}

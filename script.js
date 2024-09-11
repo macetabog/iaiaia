@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const questions = [
         {
             question: "Como você lida com desafios inesperados?",
@@ -67,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('start-btn').addEventListener('click', () => {
         startScreen.classList.add('hidden');
-        showQuestion();
         questionScreen.classList.remove('hidden');
+        showQuestion();
     });
 
     function showQuestion() {
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         questionContainer.innerHTML = `
             <div class="question">
                 <h3>${question.question}</h3>
-                ${question.answers.map((answer, ) => `
+                ${question.answers.map((answer, index) => `
                     <label>
                         <input type="radio" name="q${currentQuestionIndex}" value="${answer.type}" required>
                         ${answer.text}
@@ -87,11 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('submit-btn').addEventListener('click', () => {
-        const selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
-        selectedAnswers.forEach(answer => {
-            scores[answer.value]++;
-        });
+        const selectedAnswer = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
+        if (!selectedAnswer) {
+            alert('Por favor, selecione uma resposta antes de prosseguir.');
+            return;
+        }
 
+        scores[selectedAnswer.value]++;
+        
+        // Avançar para a próxima pergunta ou mostrar o resultado
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            showQuestion();
+        } else {
+            showResult();
+        }
+    });
+
+    function showResult() {
         const result = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
         const resultText = {
@@ -104,16 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('result').textContent = resultText[result];
         resultScreen.classList.remove('hidden');
         questionScreen.classList.add('hidden');
-    });
+    }
 
     document.getElementById('restart-btn').addEventListener('click', () => {
         resultScreen.classList.add('hidden');
         startScreen.classList.remove('hidden');
         currentQuestionIndex = 0;
-        scores['Tobey Maguire'] = 0;
-        scores['Andrew Garfield'] = 0;
-        scores['Tom Holland'] = 0;
-        scores['Miles Morales'] = 0;
+        Object.keys(scores).forEach(key => scores[key] = 0);
     });
 
-});
+});                                                                    
